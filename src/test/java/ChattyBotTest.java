@@ -1,5 +1,6 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import Entity.ChattyBot;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -8,7 +9,6 @@ import java.io.PrintStream;
 import java.util.Scanner;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
@@ -87,7 +87,7 @@ public class ChattyBotTest {
         PrintStream tps = new PrintStream(baos);
         System.setOut(tps);
 
-        ChattyBot.count(new Scanner(System.in));
+        ChattyBot.countToInputNumber(new Scanner(System.in));
         System.setOut(original);
         System.setIn(originalIn);
         tps.flush();
@@ -111,7 +111,7 @@ public class ChattyBotTest {
         PrintStream tps = new PrintStream(baos);
         System.setOut(tps);
 
-        ChattyBot.test(new Scanner(System.in));
+        ChattyBot.askQuestion(new Scanner(System.in));
         System.setOut(original);
         System.setIn(originalIn);
         tps.flush();
@@ -130,7 +130,7 @@ public class ChattyBotTest {
         PrintStream tps = new PrintStream(baos);
         System.setOut(tps);
 
-        ChattyBot.end();
+        ChattyBot.goodbyeAndEnd();
         System.setOut(original);
         tps.flush();
         assertEquals("Congratulations, have a nice day!\n", baos.toString());

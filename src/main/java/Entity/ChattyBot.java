@@ -1,3 +1,5 @@
+package Entity;
+
 import java.util.Scanner;
 
 public class ChattyBot {
@@ -7,9 +9,9 @@ public class ChattyBot {
         greet("Max", "2002"); // change it as you need
         remindName(scanner);
         guessAge(scanner);
-        count(scanner);
-        test(scanner);
-        end();
+        countToInputNumber(scanner);
+        askQuestion(scanner);
+        goodbyeAndEnd();
     }
 
     static void greet(String assistantName, String birthYear) {
@@ -29,11 +31,15 @@ public class ChattyBot {
         int rem3 = scanner.nextInt();
         int rem5 = scanner.nextInt();
         int rem7 = scanner.nextInt();
-        int age = (rem3 * 70 + rem5 * 21 + rem7 * 15) % 105;
+        int age = getAgeByFormula(rem3, rem5, rem7);
         System.out.println("Your age is " + age + "; that's a good time to start programming!");
     }
 
-    static void count(Scanner scanner) {
+    private static int getAgeByFormula(int rem3, int rem5, int rem7) {
+        return (rem3 * 70 + rem5 * 21 + rem7 * 15) % 105;
+    }
+
+    static void countToInputNumber(Scanner scanner) {
         System.out.println("Now I will prove to you that I can count to any number you want.");
         int num = scanner.nextInt();
         for (int i = 0; i <= num; i++) {
@@ -41,7 +47,7 @@ public class ChattyBot {
         }
     }
 
-    static void test(Scanner scanner) {
+    static void askQuestion(Scanner scanner) {
         System.out.println("Let's test your programming knowledge.");
         System.out.println("Why do we use methods?\n" +
                 "1. To repeat a statement multiple times.\n" +
@@ -57,12 +63,12 @@ public class ChattyBot {
             case 4:
             default:
                 System.out.println("Please, try again.");
-                test(scanner);
+                askQuestion(scanner);
                 break;
         }
     }
 
-    static void end() {
+    static void goodbyeAndEnd() {
         System.out.println("Congratulations, have a nice day!"); // Do not change this text
     }
 }
